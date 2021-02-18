@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "491946326115",
+    "project_id": "fir-with-bloc",
+    "storage_bucket": "fir-with-bloc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491946326115:android:4c59f17072618136b8e056",
+        "android_client_info": {
+          "package_name": "com.hamidovhamid.firebase_with_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491946326115-ibpn8na6iukgelifinn28faqfv6fqo42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEINl-jYfYEnjyvrLDK2KRiT9LRJODgZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491946326115-ibpn8na6iukgelifinn28faqfv6fqo42.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

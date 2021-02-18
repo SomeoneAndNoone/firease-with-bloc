@@ -1,3 +1,6 @@
+# remove google plays services file in /android/app/ directory
+android/app/google-services.json
+
 # Miscellaneous
 *.class
 *.log
