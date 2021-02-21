@@ -10,7 +10,7 @@ class GoalsBlocProvider extends InheritedWidget {
   bool updateShouldNotify(_) => true;
 
   static GoalsBloc of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType() as GoalsBlocProvider).bloc;
+    return (context.inheritFromWidgetOfExactType(GoalsBlocProvider) as GoalsBlocProvider).bloc;
   }
 }
 

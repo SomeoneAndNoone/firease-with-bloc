@@ -62,7 +62,7 @@ class GoalsBloc {
     return _repository.othersGoalList();
   }
 
-  // dispose all open sink
+  //dispose all open sink
   void dispose() async {
     await _goalMessage.drain();
     _goalMessage.close();
@@ -72,7 +72,7 @@ class GoalsBloc {
     _showProgress.close();
   }
 
-  // Convert map to goal list
+  //Convert map to goal list
   List mapToList({DocumentSnapshot doc, List<DocumentSnapshot> docList}) {
     if (docList != null) {
       List<OtherGoal> goalList = [];
@@ -81,7 +81,6 @@ class GoalsBloc {
         Map<String, String> goals = document.data()[StringConstant.goalField] != null
             ? document.data()[StringConstant.goalField].cast<String, String>()
             : null;
-
         if (goals != null) {
           goals.forEach((title, message) {
             OtherGoal otherGoal = OtherGoal(email, title, message);
@@ -89,13 +88,11 @@ class GoalsBloc {
           });
         }
       });
-
       return goalList;
     } else {
       Map<String, String> goals = doc.data()[StringConstant.goalField] != null
           ? doc.data()[StringConstant.goalField].cast<String, String>()
           : null;
-
       List<Goal> goalList = [];
       if (goals != null) {
         goals.forEach((title, message) {
@@ -107,7 +104,7 @@ class GoalsBloc {
     }
   }
 
-  // Remove item from the goal list
+  //Remove item from the goal list
   void removeGoal(String title, String email) {
     return _repository.removeGoal(title, email);
   }

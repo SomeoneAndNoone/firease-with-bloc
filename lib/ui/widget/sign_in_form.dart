@@ -7,10 +7,12 @@ import '../goals_list.dart';
 
 class SignInForm extends StatefulWidget {
   @override
-  _SignInFormState createState() => _SignInFormState();
+  SignInFormState createState() {
+    return SignInFormState();
+  }
 }
 
-class _SignInFormState extends State<SignInForm> {
+class SignInFormState extends State<SignInForm> {
   LoginBloc _bloc;
 
   @override
@@ -41,82 +43,76 @@ class _SignInFormState extends State<SignInForm> {
 
   Widget passwordField() {
     return StreamBuilder(
-      stream: _bloc.password,
-      builder: (context, AsyncSnapshot<String> snapshot) {
-        return TextField(
-          onChanged: _bloc.changePassword,
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: StringConstant.passwordHint,
-            errorBorder: snapshot.error,
-          ),
-        );
-      },
-    );
+        stream: _bloc.password,
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          return TextField(
+            onChanged: _bloc.changePassword,
+            obscureText: true,
+            decoration:
+                InputDecoration(hintText: StringConstant.passwordHint, errorText: snapshot.error),
+          );
+        });
   }
 
   Widget emailField() {
     return StreamBuilder(
-      stream: _bloc.email,
-      builder: (context, snapshot) {
-        return TextField(
-          onChanged: _bloc.changeEmail,
-          decoration: InputDecoration(
-            hintText: StringConstant.emailHint,
-            errorText: snapshot.error,
-          ),
-        );
-      },
-    );
+        stream: _bloc.email,
+        builder: (context, snapshot) {
+          return TextField(
+            onChanged: _bloc.changeEmail,
+            decoration:
+                InputDecoration(hintText: StringConstant.emailHint, errorText: snapshot.error),
+          );
+        });
   }
 
   Widget submitButton() {
     return StreamBuilder(
-      stream: _bloc.signInStatus,
-      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-        if (!snapshot.hasData || snapshot.hasError) {
-          return button();
-        } else {
-          return CircularProgressIndicator();
-        }
-      },
-    );
+        stream: _bloc.signInStatus,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (!snapshot.hasData || snapshot.hasError) {
+            return button();
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 
   Widget button() {
     return RaisedButton(
-      child: Text(StringConstant.submit),
-      textColor: Colors.white,
-      color: Colors.black,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      onPressed: () {
-        if (_bloc.validateFields()) {
-          authenticateUser();
-        } else {
-          showErrorMessage();
-        }
-      },
-    );
+        child: Text(StringConstant.submit),
+        textColor: Colors.white,
+        color: Colors.black,
+        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+        onPressed: () {
+          if (_bloc.validateFields()) {
+            authenticateUser();
+          } else {
+            showErrorMessage();
+          }
+        });
   }
 
   void authenticateUser() {
     _bloc.showProgressBar(true);
     _bloc.submit().then((value) {
       if (value == 0) {
-        // New User
+        //New User
         _bloc.registerUser().then((value) {
           Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => GoalsList(_bloc.emailAddress)));
         });
+      } else {
+        //Already registered
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => GoalsList(_bloc.emailAddress)));
       }
     });
   }
 
   void showErrorMessage() {
-    final snackbar = SnackBar(
-      content: Text(StringConstant.errorMessage),
-      duration: Duration(seconds: 2),
-    );
+    final snackbar =
+        SnackBar(content: Text(StringConstant.errorMessage), duration: new Duration(seconds: 2));
     Scaffold.of(context).showSnackBar(snackbar);
   }
 }

@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
     return LoginBlocProvider(
       child: GoalsBlocProvider(
         child: MaterialApp(
-          theme: ThemeData(accentColor: Colors.black, primaryColor: Colors.amber),
+          theme: ThemeData(
+            accentColor: Colors.black,
+            primaryColor: Colors.amber,
+          ),
           home: Scaffold(
             appBar: AppBar(
               title: Text(

@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 
 class PeopleGoalsListScreen extends StatefulWidget {
   @override
-  _PeopleGoalsListScreenState createState() => _PeopleGoalsListScreenState();
+  _PeopleGoalsListState createState() {
+    return _PeopleGoalsListState();
+  }
 }
 
-class _PeopleGoalsListScreenState extends State<PeopleGoalsListScreen> {
+class _PeopleGoalsListState extends State<PeopleGoalsListScreen> {
   GoalsBloc _bloc;
 
   @override
@@ -33,15 +35,14 @@ class _PeopleGoalsListScreenState extends State<PeopleGoalsListScreen> {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             List<DocumentSnapshot> docs = snapshot.data.docs;
-
             List<OtherGoal> goalsList = _bloc.mapToList(docList: docs);
             if (goalsList.isNotEmpty) {
               return buildList(goalsList);
             } else {
-              return Text('No Goals');
+              return Text("No Goals");
             }
           } else {
-            return Text('No Goals');
+            return Text("No Goals");
           }
         },
       ),
@@ -50,27 +51,26 @@ class _PeopleGoalsListScreenState extends State<PeopleGoalsListScreen> {
 
   ListView buildList(List<OtherGoal> goalsList) {
     return ListView.separated(
-      separatorBuilder: (BuildContext context, int index) => Divider(),
-      itemCount: goalsList.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            goalsList[index].title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
+        separatorBuilder: (BuildContext context, int index) => Divider(),
+        itemCount: goalsList.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(
+              goalsList[index].title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          subtitle: Text(goalsList[index].message),
-          trailing: Text(
-            goalsList[index].email,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 10.0,
+            subtitle: Text(goalsList[index].message),
+            trailing: Text(
+              goalsList[index].email,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 10.0,
+              ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        });
   }
 }
 

@@ -8,6 +8,8 @@ class Goal {
   }
 
   String get title => _title;
+
   String get message => _message;
+
   int get id => _id;
 }

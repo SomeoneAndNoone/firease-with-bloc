@@ -11,10 +11,12 @@ class GoalsList extends StatefulWidget {
   GoalsList(this._emailAddress);
 
   @override
-  _GoalsListState createState() => _GoalsListState();
+  GoalsListState createState() {
+    return GoalsListState();
+  }
 }
 
-class _GoalsListState extends State<GoalsList> with SingleTickerProviderStateMixin {
+class GoalsListState extends State<GoalsList> with SingleTickerProviderStateMixin {
   TabController _tabController;
 
   @override
@@ -41,10 +43,12 @@ class _GoalsListState extends State<GoalsList> with SingleTickerProviderStateMix
       appBar: AppBar(
         title: Text(
           StringConstant.goalListTitle,
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
         backgroundColor: Colors.amber,
-        elevation: 0,
+        elevation: 0.0,
         bottom: TabBar(
           controller: _tabController,
           tabs: <Tab>[
@@ -67,14 +71,11 @@ class _GoalsListState extends State<GoalsList> with SingleTickerProviderStateMix
   Widget _bottomButtons() {
     if (_tabController.index == 1) {
       return FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AddGoalScreen(widget._emailAddress)),
-          );
-        },
-      );
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddGoalScreen(widget._emailAddress)));
+          });
     } else {
       return null;
     }
