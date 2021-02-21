@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_with_bloc/models/goal.dart';
+import 'package:firebase_with_bloc/models/other_goal.dart';
 import 'package:firebase_with_bloc/resources/repository.dart';
 import 'package:firebase_with_bloc/src/constants/string_constant.dart';
 import 'package:rxdart/rxdart.dart';
