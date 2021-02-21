@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'blocs/goals_bloc_provider.dart';
+import 'blocs/login_bloc_provider.dart';
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
